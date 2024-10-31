@@ -6,6 +6,9 @@ class Category(models.Model):
 
 	def __str__(self):
 		return self.name
+	
+	class Meta:
+		verbose_name_plural = 'categories'
 
 class Customer(models.Model):
 	name = models.CharField(max_length=100)
@@ -15,7 +18,7 @@ class Customer(models.Model):
 
 	def __str__(self):
 		return self.name
-
+	
 class Product(models.Model):
 	name = models.CharField(max_length=100)
 	price = models.DecimalField(default=0, decimal_places=2, max_digits=10)
