@@ -7,10 +7,11 @@ from django.contrib.auth.forms import UserCreationForm
 from .forms import SignUpForm
 from django import forms
 
+
 def home(request):
     products = Product.objects.all()
-    categories = Category.objects.all()
-    return render(request, 'home.html', {'products': products, 'categories': categories})
+    all_cate = Category.objects.all()
+    return render(request, 'home.html', {'products': products, 'all_cate': all_cate})
 
 def about(request):
     return render(request, 'about.html', {})
@@ -56,3 +57,14 @@ def register_user(request):
 def product(request, pk):
     product = Product.objects.get(id=pk)
     return render(request, 'product.html', {'product':product})
+
+def category(request, pk):
+    all_cate = Category.objects.all()
+    try:
+        category = Category.objects.get(id=pk)
+        products = Product.objects.filter(category=category)
+        return render(request, 'category.html', {'products':products,
+                                                  'category':category, 'all_cate': all_cate})
+    except:
+        messages.error(request, ("Category not found !"))
+        return redirect('home')

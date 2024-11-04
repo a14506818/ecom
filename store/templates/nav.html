@@ -39,21 +39,20 @@
             role="button"
             data-bs-toggle="dropdown"
             aria-expanded="false"
-            >Shop</a
+            >Categories</a
           >
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#!">All Products</a></li>
+            <li><a class="dropdown-item" href="{% url 'home' %}">All Products</a></li>
             <li><hr class="dropdown-divider" /></li>
-            {% for category in categories %}
+            {% for category in all_cate %}
             <li>
-              <a class="dropdown-item" href="#!">{{category.name}}</a>
+              <a class="dropdown-item" href="{% url 'category' category.id %}">{{category.name}}</a>
             </li>
             {% endfor %}
           </ul>
         </li>
       </ul>
       <form class="d-flex">
-        
         <button class="btn btn-outline-dark" type="submit">
           <i class="bi-cart-fill me-1"></i>
           Cart
