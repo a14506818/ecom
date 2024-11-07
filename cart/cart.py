@@ -8,3 +8,10 @@ class Cart():
             cart = self.session['session_key'] = {}
         # make sure cart is available on all pages of site
         self.cart = cart
+
+    def add(self, product):
+        product_id = str(product.id)
+
+        if product_id not in self.cart:
+            self.cart[product_id] = {'Price': str(product.price)}
+        self.session.modified = True
