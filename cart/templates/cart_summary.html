@@ -8,10 +8,14 @@
     </div>
   </div>
 </header>
-<section class="py-5">
+<section class="py-5" style="min-height: 40vh">
   <div class="container px-4 px-lg-5 mt-5 col-8">
     <div class="ustify-content-center">
-      <p>cart data</p>
+      {% if cart_products %} {% for product in cart_products %}
+      <p>{{ product.name }}</p>
+      {% endfor %} {% else %}
+      <p>Cart Empty</p>
+      {% endif %}
     </div>
   </div>
 </section>
