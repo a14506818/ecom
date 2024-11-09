@@ -61,6 +61,7 @@
       },
       success: function (json) {
         console.log(json);
+        document.getElementById("cart_QTY").textContent = json.QTY;
       },
       error: function (xhr, errmsg, err) {},
     });

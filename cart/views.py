@@ -16,8 +16,10 @@ def cart_add(request):
         product = get_object_or_404(Product, id=product_id)
         # save to session
         cart.add(product=product)
+        # QTY
+        cart_QTY = cart.__len__()
         # response
-        response = JsonResponse({'Product Name: ': product.name})
+        response = JsonResponse({'QTY': cart_QTY})
         return response
 
 def cart_delete(request):

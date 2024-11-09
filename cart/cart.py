@@ -15,3 +15,6 @@ class Cart():
         if product_id not in self.cart:
             self.cart[product_id] = {'Price': str(product.price)}
         self.session.modified = True
+
+    def __len__(self):
+        return len(self.cart)
