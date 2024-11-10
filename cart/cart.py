@@ -11,11 +11,13 @@ class Cart():
         # make sure cart is available on all pages of site
         self.cart = cart
 
-    def add(self, product):
+    def add(self, product, product_QTY:int):
         product_id = str(product.id)
 
         if product_id not in self.cart:
-            self.cart[product_id] = {'Price': str(product.price)}
+            self.cart[product_id] = {'QTY': product_QTY}
+        else:
+            self.cart[product_id]['QTY'] += product_QTY
         self.session.modified = True
 
     def __len__(self):
@@ -25,3 +27,6 @@ class Cart():
         product_ids = self.cart.keys()
         products = Product.objects.filter(id__in=product_ids)
         return products
+    
+    def get_products_item(self):
+        return self.cart
