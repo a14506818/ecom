@@ -14,7 +14,7 @@ def cart_add(request):
     cart = Cart(request)
     # test for POST
     if request.POST.get('action') == 'post':
-        # det stuff
+        # get stuff
         product_id = int(request.POST.get('product_id'))
         product_QTY = int(request.POST.get('product_QTY'))
         product = get_object_or_404(Product, id=product_id)
@@ -30,4 +30,17 @@ def cart_delete(request):
     pass
 
 def cart_update(request):
-    pass
+    # get the cart
+    cart = Cart(request)
+    # test for POST
+    if request.POST.get('action') == 'post':
+        # get stuff
+        product_id = int(request.POST.get('product_id'))
+        product = get_object_or_404(Product, id=product_id)
+        operation = request.POST.get('operation')
+        # update session
+        new_QTY = cart.update_product_QTY(product=product, operation=operation)
+        # response
+        response = JsonResponse({'product_id': product_id, 'new_QTY': new_QTY})
+        return response
+

@@ -30,3 +30,10 @@ class Cart():
     
     def get_products_item(self):
         return self.cart
+    
+    def update_product_QTY(self, product, operation):
+        product_id = str(product.id)
+        if operation == '+': self.cart[product_id]['QTY'] += 1
+        if operation == '-' and self.cart[product_id]['QTY'] > 0: self.cart[product_id]['QTY'] -= 1
+        self.session.modified = True
+        return self.cart[product_id]['QTY']
